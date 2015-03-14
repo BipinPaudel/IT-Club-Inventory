@@ -67,7 +67,7 @@ class ItemsController extends AppController {
 			$this->Item->create();
 			if ($this->Item->save($this->request->data)) {
 				$this->Session->setFlash(__('The item has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller'=>'categories'  ,'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The item could not be saved. Please, try again.'));
 			}
@@ -96,7 +96,7 @@ class ItemsController extends AppController {
             if($this->request->is('post') || $this->request->is('put') ){
                 if($this->Item->save($this->request->data)){
                 $this->Session->setFlash('The data has been edited successfully');
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(array('controller'=>'categories' ,'action' => 'index'));
                 //$this->redirect('index');
             }
                 else{
@@ -122,12 +122,13 @@ class ItemsController extends AppController {
 		if (!$this->Item->exists()) {
 			throw new NotFoundException(__('Invalid item'));
 		}
+               //$categoryId=$this->Item->findById($category_id);
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Item->delete()) {
 			$this->Session->setFlash(__('The item has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The item could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		 $this->redirect(array('controller'=>'categories','action' => 'index'));
 	}
 }

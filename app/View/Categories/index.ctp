@@ -1,30 +1,34 @@
-<h1>List of Categories</h1>
-
-<table>
+<h2>List of Categories</h2>
+<h4><li align="right"><?php echo $this->Html->link(__('Add New Category'), array('action' => 'add')); ?></li></h4>
+<div class="table-responsive">
+<table class="table">
     <thead>
-        <tr>
-            <td> Id number</td>
-            <td>Name<td>
-            <td>Actions</td>
+            <tr>
+                
+                <td><h3>Name</h3></td>
+            <td><h3>Actions</h3></td>
         </tr>
     </thead>
+    <tbody>
     <?php foreach($categories as $category): ?>
     <tr>
-        <td><?php echo h($category['Category']['id']);  ?></td>
+        
         
         <td> <?php echo $this->Html->link($category['Category']['name'],
                 array('controller'=>'items','action'=>'index',$category['Category']['id']));?>   </td>
-        <td> <h4> <?php echo $this->Html->link(__('Edit'),array('action'=>'edit',$category['Category']['id'])); ?> 
+        <td>  <?php echo $this->Html->link(__('Edit'),array('action'=>'edit',$category['Category']['id'])); ?> 
                 
         | 
-        <?php echo $this->Html->link(__('Delete'),array('action'=>'delete',$category['Category']['id'])); ?>
-            </h4>
+        <?php echo $this->Form->postLink(__('Delete'),array('action'=>'delete',$category['Category']['id']),
+                array(), __('Are you sure you want to delete # %s ?', $category['Category']['id'])); ?>
+            
         </td>
     </tr>
     <?php endforeach; ?>
+    </tbody>
 </table>
-<div class="actions">
+    </div>
+
 	<ul>
-		<li><?php echo $this->Html->link(__('New Category'), array('action' => 'add')); ?></li>
-		</ul>
-</div>
+	
+	</ul>

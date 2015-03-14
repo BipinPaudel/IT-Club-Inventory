@@ -67,7 +67,29 @@ class CategoriesController extends AppController {
         $this->request->data=$data;
     }
     
+    public function delete($id = null,$id2=null){
+//        if(!$id){
+//            throw new NotFoundException(__('Id was not set.'));
+//        }
+        $this->Category->id=$id;
+        if(!$this->Category->exists() || !$id){
+            throw new NotFoundException(__('Invalid item '));
+        }
+    if($this->request->allowMethod('post', 'delete')){
+		if ($this->Category->delete()) {
+			$this->Session->setFlash(__('The item has been deleted.'));
+		} else {
+			$this->Session->setFlash(__('The item could not be deleted. Please, try again.'));
+		}
+		return $this->redirect(array('action' => 'index'));
+        }
+        deleteItem($id2);
+    }
+    
+    public function deleteItem($id){
+        if(!$this->Item->exists($id) || !$id){
+            throw new NotFoundException(__('Invalid item'));
+        }
         
-    
-    
-}
+    }
+ }
