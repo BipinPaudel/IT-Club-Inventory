@@ -21,9 +21,15 @@ class UsersController extends AppController {
  * @return void
  */
 	public function index() {
+             if($this->Auth->user('role')=='admin'){
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
-	}
+        }
+        else{
+            $this->Session->setFlash((__('You do not have access to this')));
+            $this->redirect(array('controller'=>'categories','action'=>'index'));
+        }
+             }
 
         
         public function beforeFilter() {
@@ -66,6 +72,7 @@ class UsersController extends AppController {
             $this->redirect('/categories/index');
         }
 	public function add() {
+            if($this->Auth->user('role')=='admin'){
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -76,6 +83,11 @@ class UsersController extends AppController {
 			}
 		}
 	}
+        else{
+            $this->Session->setFlash(__('You do not have access to this feature'));
+            $this->redirect(array('index'));
+        }
+        }
 
 /**
  * edit method

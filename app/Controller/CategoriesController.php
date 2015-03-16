@@ -39,6 +39,7 @@ class CategoriesController extends AppController {
 //        if($this->Category->exists($id)){
 //            throw new NotFoundException (__('Id was not found '));
 //        }
+        if($this->Auth->user('role')=='admin'){
         if(!$id){
             throw new NotFoundException(__('Id was not set'));
         }
@@ -66,11 +67,17 @@ class CategoriesController extends AppController {
 //        }
         $this->request->data=$data;
     }
+    else{
+        $this->Session->setFlash(__('You do not have right to do this'));
+        $this->redirect('index');
+    }
+   }
     
     public function delete($id = null,$id2=null){
 //        if(!$id){
 //            throw new NotFoundException(__('Id was not set.'));
 //        }
+        if($this->Auth->user('role')=='admin'){
         $this->Category->id=$id;
         if(!$this->Category->exists() || !$id){
             throw new NotFoundException(__('Invalid item '));
@@ -83,8 +90,13 @@ class CategoriesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
         }
-        deleteItem($id2);
+        //deleteItem($id2);
     }
+     else{
+        $this->Session->setFlash(__('You do not have right to do this'));
+        $this->redirect('index');
+    }   
+     }
     
     public function deleteItem($id){
         if(!$this->Item->exists($id) || !$id){

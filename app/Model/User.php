@@ -38,5 +38,10 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+            'username'=>array(
+                'rule'=>array('notEmpty','isUnique'),
+                'message'=>'Cannot be empty and should be unique'
+            )
+           
 	);
 }

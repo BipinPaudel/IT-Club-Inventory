@@ -63,6 +63,7 @@ class ItemsController extends AppController {
  * @return void
  */
 	public function add() {
+            //if(!$this->Auth->user('role')==0){
 		if ($this->request->is('post')) {
 			$this->Item->create();
 			if ($this->Item->save($this->request->data)) {
@@ -75,7 +76,9 @@ class ItemsController extends AppController {
                 
                 $this->set('categories',$this->Item->Category->find('list',
                         array('order'=>'name')));
-	}
+        }
+      //  }
+                        
 
 /**
  * edit method

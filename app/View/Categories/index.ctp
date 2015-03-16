@@ -1,5 +1,6 @@
 <h2>List of Categories</h2>
-<h4><li align="right"><?php echo $this->Html->link(__('Add New Category'), array('action' => 'add')); ?></li></h4>
+<h4 align="right"><li align="right"><?php echo $this->Html->link(__('Add New Category'), 
+        array('action' => 'add')); ?></li></h4>
 <div class="table-responsive">
 <table class="table">
     <thead>

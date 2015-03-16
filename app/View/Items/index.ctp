@@ -1,6 +1,6 @@
 <div class="items">
 	
-    <h4>	<li align="right"><?php echo $this->Html->link(__('Add New Item'), array('action' => 'add')); ?></li></h4>
+    <h4 align="right">	<li align="right"><?php echo $this->Html->link(__('Add New Item'), array('action' => 'add')); ?></li></h4>
 	<!--    <form class="navbar-form navbar-left" role="search" align='right'>
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Search">

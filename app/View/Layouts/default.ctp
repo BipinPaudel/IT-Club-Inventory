@@ -49,7 +49,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                      <ul class="nav nav-tabs">
   <li role="presentation" class="active"><a href="/itinventory/categories">Home</a></li>
   <li role="presentation"><a href="/itinventory/categories">Category</a></li>
+  <?php // if ($this->Auth->user('role')=='admin') : ?>
   <li role="presentation"><a href="/itinventory/users">Users</a></li>
+  <?php // endif; ?>
   <?php if(AuthComponent::user()) :?> <li> <a href="/itinventory/users/logout">Logout</a>   </li>
   <?php else : ?>
   <li><a href="/itinventory/users/login">Login</a></li>
