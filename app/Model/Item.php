@@ -11,13 +11,22 @@ class Item extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'title';
+	
 
-/**
+        
+       public $actsAs=array('Search.Searchable');
+    public $filterArgs=array(
+        'name'=>array(
+            'type'=>'like',
+            'field'=>'title'
+        )
+    );
+        /**     
  * Validation rules
  *
  * @var array
  */
+        public $displayField = 'title';
 	public $validate = array(
 		
 		'category_id' => array(

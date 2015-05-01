@@ -13,11 +13,11 @@ App::uses('AppController', 'Controller');
  */
 class CategoriesController extends AppController {
     //put your code here
-    public $components=array('Session','Paginator');
+    public $components=array('Session','Paginator','Search.Prg');
     public $helpers = array('Session');
     
     public function index(){
-        $this->Category->recursive=0;
+        
         $this->set('categories',$this->Paginator->paginate());
     }
     
@@ -98,10 +98,5 @@ class CategoriesController extends AppController {
     }   
      }
     
-    public function deleteItem($id){
-        if(!$this->Item->exists($id) || !$id){
-            throw new NotFoundException(__('Invalid item'));
-        }
-        
-    }
+   
  }

@@ -12,10 +12,16 @@ App::uses('AppModel', 'Model');
  * @author Bipin
  */
 class Category extends AppModel{
-    
+    public $actsAs=array('Search.Searchable');
+    public $filterArgs=array(
+        'name'=>array(
+            'type'=>'like',
+            'field'=>'name'
+        )
+    );
     public $displayField='name';
     
-    public $hasMany='items';
+    public $hasMany='Item';
     
     
 }

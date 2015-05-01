@@ -29,7 +29,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('bootstrap');
-
+                echo $this->Html->css('jquery.dataTables.min');
+                echo $this->Html->script('jquery.dataTables.min');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -51,6 +52,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
   <li role="presentation"><a href="/itinventory/categories">Category</a></li>
   <?php // if ($this->Auth->user('role')=='admin') : ?>
   <li role="presentation"><a href="/itinventory/users">Users</a></li>
+  <li role="presentation"><a href="/itinventory/messages">Message</a></li>
   <?php // endif; ?>
   <?php if(AuthComponent::user()) :?> <li> <a href="/itinventory/users/logout">Logout</a>   </li>
   <?php else : ?>
@@ -62,8 +64,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             
             
             
-            
-            
+      
             
             
             

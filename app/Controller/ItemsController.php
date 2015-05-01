@@ -22,7 +22,7 @@ class ItemsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session','Search.Prg');
 
 /**
  * index method
@@ -30,18 +30,34 @@ class ItemsController extends AppController {
  * @return void
  */
 	public function index($id=null) {
-//		if(!$id){
-//                    throw new NotFoundException(__('Id was not set'));
-//                }
-                $data=$this->Item->find('all',array('order'=>'created',
-                   'conditions'=>array('category_id LIKE' => '%'.$id .'%') ));
-                $this->set('items',$data);
-                            
+		if(!$id){
+                    throw new NotFoundException(__('Id was not set'));
+                }
+            
+                $data=$this->Item->find('all',array('first'=>'created',
+                  'conditions'=>array('category_id LIKE' => '%'.$id .'%') ));
+                $count= $this->Item->find('count',array('conditions'=>array('category_id LIKE' => '%'. $id.'%')));
+                //$this->set('count',$count);
+                $info = array('items'=>$data,'count'=>$count);
+               // if($count > 0)
+                $this->set($info);
+                $this->set($this->Paginator->paginate());
+                //else{
+                    
+                //    $this->redirect(array('controller'=>'items','action'=>'index'));
+                   
+               // }
                 
                
-                
-	}
+                }
 
+// $data=$this->Item->find('all');
+  
+        //$this->set('items',$this->Paginator->paginate());
+              
+     
+        
+ 
 /**
  * view method
  *

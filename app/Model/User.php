@@ -11,8 +11,9 @@ class User extends AppModel {
  *
  * @var array
  */
-   
-  public function beforeSave($options = array()) {
+    public $displayField= 'name';
+   public $hasMany= 'Message'; 
+public function beforeSave($options = array()) {
       parent::beforeSave($options);
        $this->data['User']['password']=
  AuthComponent::password($this->data['User']['password']);

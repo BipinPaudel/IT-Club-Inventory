@@ -69,7 +69,7 @@ Cache::config('default', array('engine' => 'File'));
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
-
+CakePlugin::load('DebugKit'); 
 /**
  * To prefer app translation over plugin translation, you can set
  *
@@ -101,6 +101,8 @@ Configure::write('Dispatcher.filters', array(
 /**
  * Configures default file logging options
  */
+CakePlugin::loadAll(); // Loads all plugins at once
+
 App::uses('CakeLog', 'Log');
 CakeLog::config('debug', array(
 	'engine' => 'File',
